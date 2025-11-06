@@ -1,11 +1,19 @@
+# Power Rush 
 
-  # Power Rush
+Power Rush is an interactive game developed using Figma, initially created as a game to celebrate independence. It has been tested at the Pasar Jajan event.
 
-  This is a code bundle for Power Rush. The original project is available at https://www.figma.com/design/MaqVUjmVuDazY1OhstwyhV/Power-Rush.
+Features
+- Interactive gameplay with power rush mechanics
+- Admin dashboard for analytics and management
+- Audio integration for enhanced experience
+- Responsive UI built with React and Tailwind CSS
 
-  ## Running the code
+---------------------------------------------------------------
 
-  Run `npm i` to install the dependencies.
+Power Rush adalah permainan interaktif yang dikembangkan menggunakan Figma, awalnya dibuat sebagai permainan untuk merayakan kemerdekaan. Ini telah diuji di acara Pasar Jajan.
 
-  Run `npm run dev` to start the development server.
-  
+Fitur
+- Permainan interaktif dengan mekanik power rush
+- Dashboard admin untuk analitik dan manajemen
+- Integrasi audio untuk pengalaman yang lebih baik
+- UI responsif dibangun dengan React dan Tailwind CSS
