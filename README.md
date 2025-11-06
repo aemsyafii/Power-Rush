@@ -8,6 +8,8 @@ Features
 - Audio integration for enhanced experience
 - Responsive UI built with React and Tailwind CSS
 
+Password Default Admin Dashboard: admin123
+
 ---------------------------------------------------------------
 
 Power Rush adalah permainan interaktif yang dikembangkan menggunakan Figma, awalnya dibuat sebagai permainan untuk merayakan kemerdekaan. Ini telah diuji di acara Pasar Jajan.
@@ -17,3 +19,5 @@ Fitur
 - Dashboard admin untuk analitik dan manajemen
 - Integrasi audio untuk pengalaman yang lebih baik
 - UI responsif dibangun dengan React dan Tailwind CSS
+
+Kata Sandi Bawaan Admin Dashboard: admin123
