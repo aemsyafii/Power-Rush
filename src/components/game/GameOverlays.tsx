@@ -1,0 +1,136 @@
+import React from 'react';
+import { Button } from '../ui/button';
+import { Card, CardContent } from '../ui/card';
+import { Trophy, ArrowRight } from 'lucide-react';
+
+interface CountdownOverlayProps {
+  countdown: number;
+}
+
+export function CountdownOverlay({ countdown }: CountdownOverlayProps) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-blue-500/30 backdrop-blur-lg">
+      <div className="text-center">
+        <div className="text-8xl sm:text-9xl font-bold mb-6 animate-bounce text-white drop-shadow-2xl">
+          {countdown}
+        </div>
+        <p className="text-xl sm:text-2xl font-semibold animate-pulse text-white drop-shadow-lg">
+          ⚡ BERSIAP-SIAP! ⚡
+        </p>
+        <div className="mt-4 flex justify-center space-x-2">
+          <div className="w-3 h-3 bg-white rounded-full animate-bounce delay-0"></div>
+          <div className="w-3 h-3 bg-white rounded-full animate-bounce delay-150"></div>
+          <div className="w-3 h-3 bg-white rounded-full animate-bounce delay-300"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface ResultOverlayProps {
+  isWinner: boolean;
+  playerName: string;
+  batteryLevel: number;
+  wonPrizeNumber: number | null;
+  isSpinning: boolean;
+  displayNumber: number;
+  canContinue: boolean;
+  continueCountdown: number;
+  onContinue: () => void;
+}
+
+export function ResultOverlay({
+  isWinner,
+  playerName,
+  batteryLevel,
+  wonPrizeNumber,
+  isSpinning,
+  displayNumber,
+  canContinue,
+  continueCountdown,
+  onContinue
+}: ResultOverlayProps) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-blue-500/30 backdrop-blur-lg p-4">
+      <Card className="w-full max-w-md bg-white/95 backdrop-blur-xl border-2 border-white/50 shadow-2xl">
+        <CardContent className="p-8 text-center">
+          <div className="mb-8">
+            {isWinner ? (
+              <>
+                <div className="text-8xl mb-6 animate-bounce">🎉</div>
+                <h2 className="text-4xl font-bold text-green-600 mb-4 animate-pulse">
+                  SELAMAT {playerName}!
+                </h2>
+                <p className="text-gray-700 text-xl mb-6">
+                  Power terisi {Math.round(batteryLevel)}%!
+                </p>
+                <div className="p-6 bg-green-50 rounded-xl border-2 border-green-200">
+                  <Trophy className="w-12 h-12 mx-auto mb-3 text-green-600" />
+                  <p className="text-green-800 text-lg font-semibold mb-2">
+                    🎁 ANDA MENANG HADIAH! 🎁
+                  </p>
+                  {wonPrizeNumber && (
+                    <div className="mb-3 p-4 bg-yellow-100 rounded-lg border-2 border-yellow-300">
+                      <p className="text-yellow-800 font-bold text-xl mb-2">HADIAH NOMOR</p>
+                      <div className={`text-yellow-800 font-bold text-4xl ${isSpinning ? 'animate-pulse' : ''}`}>
+                        {isSpinning ? displayNumber : wonPrizeNumber}
+                      </div>
+                      {isSpinning && (
+                        <div className="mt-2 flex justify-center space-x-1">
+                          <div className="w-2 h-2 bg-yellow-600 rounded-full animate-bounce delay-0"></div>
+                          <div className="w-2 h-2 bg-yellow-600 rounded-full animate-bounce delay-150"></div>
+                          <div className="w-2 h-2 bg-yellow-600 rounded-full animate-bounce delay-300"></div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  <p className="text-green-700 text-sm">
+                    Tunjukkan layar ini kepada petugas untuk mengambil hadiah!
+                  </p>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="text-8xl mb-6">😔</div>
+                <h2 className="text-4xl font-bold text-red-600 mb-4">
+                  BELUM BERUNTUNG {playerName}
+                </h2>
+                <p className="text-gray-700 text-xl mb-6">
+                  Power hanya terisi {Math.round(batteryLevel)}%
+                </p>
+                <div className="p-6 bg-red-50 rounded-xl border-2 border-red-200">
+                  <p className="text-red-800 text-lg font-semibold mb-2">
+                    💪 JANGAN MENYERAH! 💪
+                  </p>
+                  <p className="text-red-700 text-sm">
+                    Coba lagi dengan tap yang lebih cepat!
+                  </p>
+                </div>
+              </>
+            )}
+          </div>
+          
+          <Button 
+            onClick={onContinue}
+            disabled={!canContinue}
+            size="lg" 
+            className={`w-full h-14 text-xl font-bold shadow-lg transition-all duration-200 ${
+              canContinue 
+                ? 'bg-blue-600 hover:bg-blue-700 text-white transform hover:scale-105'
+                : 'bg-gray-400 text-gray-600 cursor-not-allowed'
+            }`}
+          >
+            <ArrowRight className="w-6 h-6 mr-3" />
+            {canContinue ? 'LANJUT' : `TUNGGU (${continueCountdown}s)`}
+          </Button>
+          
+          {canContinue && (
+            <p className="text-center text-gray-600 mt-4">
+              Atau tekan <span className="bg-blue-100 px-2 py-1 rounded font-mono text-blue-800">SPASI</span> / <span className="bg-blue-100 px-2 py-1 rounded font-mono text-blue-800">ENTER</span>
+            </p>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
